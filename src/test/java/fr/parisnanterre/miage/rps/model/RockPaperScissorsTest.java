@@ -23,8 +23,19 @@ public class RockPaperScissorsTest {
     @Parameters({"papier", "pierre"})
     @Test
     public void testPlay(String p1, String p2) {
-        assertEquals(rps.play(Play.PAPER, Play.SCISSORS), Result.WIN);
-//        assertEquals(rps.play(PAP));
+        assertEquals(rps.play(Play.valueOf(p1), Play.valueOf(p2)), Result.WIN);
+    }
+
+    @Parameters({"papier", "papier"})
+    @Test
+    public void testTiePlay(String p1, String p2) {
+        assertEquals(rps.play(Play.valueOf(p1), Play.valueOf(p2)), Result.TIE);
+    }
+
+    @Parameters({"papier", "ciseaux"})
+    @Test
+    public void testLostPlay(String p1, String p2) {
+        assertEquals(rps.play(Play.valueOf(p1), Play.valueOf(p2)), Result.LOST);
     }
 
 }
