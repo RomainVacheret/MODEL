@@ -22,10 +22,31 @@ public class RockPaperScissorsTest {
         return new Object[][] {{Play.SCISSORS, Play.PAPER}, {Play.PAPER, Play.ROCK}, {Play.ROCK, Play.SCISSORS}};
     }
 
+    @DataProvider(name = "tieProvider")
+    public Object[][] createTieData() {
+        return new Object[][] {{Play.SCISSORS, Play.SCISSORS}, {Play.PAPER, Play.PAPER}, {Play.ROCK, Play.ROCK}};
+    }
+
+    @DataProvider(name = "lostProvider")
+    public Object[][] createLoseData() {
+        return new Object[][] {{Play.PAPER, Play.SCISSORS}, {Play.ROCK, Play.PAPER}, {Play.SCISSORS, Play.ROCK}};
+    }
+
     @Test(dataProvider = "winProvider")
-    public void testPlay(Play p1, Play p2) {
+    public void testPlayWin(Play p1, Play p2) {
         assertEquals(rps.play(p1, p2), Result.WIN);
     }
+
+    @Test(dataProvider = "tieProvider")
+    public void testPlayTie(Play p1, Play p2) {
+        assertEquals(rps.play(p1, p2), Result.TIE);
+    }
+
+    @Test(dataProvider = "lostProvider")
+    public void testPlayLost(Play p1, Play p2) {
+        assertEquals(rps.play(p1, p2), Result.LOST);
+    }
+
 
 //    @Parameters({"papier", "papier"})
 //    @Test
