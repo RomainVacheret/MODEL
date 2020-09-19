@@ -26,7 +26,7 @@ public class Player {
 
     public String getName() { return this.name; }
 
-    public int getNumberOfPlays() { return 20; }
+    public int getNumberOfPlays() { return this.plays.size(); }
 
     public int getScore() { return this.score; }
 
@@ -35,8 +35,5 @@ public class Player {
     // Desole pour cette fonction vraiment sale ... Je n'ai pas encore l'habitude de Java...
     public Play getNextMove() { return (Play) ((List) this.plays).get(this.playsIdx++); }
 
-    public static void main(String[] args) {
-        Player p = new Player("Toto");
-        System.out.println(p.getNextMove());
-    }
+    public void resetMoves() {this.playsIdx = 0; }
 }

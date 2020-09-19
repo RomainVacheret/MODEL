@@ -40,4 +40,26 @@ public class RockPaperScissors {
                 }
                 return null;
         }
+
+        public Result play(Player p1, Player p2) {
+                int p1Plays = p1.getNumberOfPlays();
+                int p2Plays = p2.getNumberOfPlays();
+                int minPlays = p1Plays < p2Plays ? p1Plays : p2Plays;
+
+                for(int i = 0; i < minPlays; i++) {
+                        Result result = this.play(p1.getNextMove(), p2.getNextMove());
+
+                        if(result == Result.LOST || result == Result.TIE) {
+                                p2.setScore(p2.getScore() + 1);
+                        }
+                        if(result != Result.LOST)        {
+                                p1.setScore(p1.getScore() + 1);
+                        }
+                }
+
+                if(p1.getScore() == p2.getScore()) {
+                        return Result.TIE;
+                }
+                return p1.getScore() < p2.getScore() ? Result.LOST : Result.WIN;
+        }
 }
