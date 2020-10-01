@@ -144,3 +144,8 @@ gradle-app.setting
 
 ### Gradle Patch ###
 **/build/
+
+# Vs Code
+.classpath
+.project
+.settings 
